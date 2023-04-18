@@ -1,0 +1,13 @@
+{
+  "recommendations": [
+    "editorconfig.editorconfig",
+    "Prisma.prisma",
+    "Vue.volar",
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "mhutchie.git-graph",
+    "bradlc.vscode-tailwindcss",
+    "rust-lang.rust-analyzer",
+    "hollowtree.vue-snippets",
+  ]
+}
