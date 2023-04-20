@@ -3,7 +3,7 @@
   "build": {
     "beforeBuildCommand": "npm run generate",
     "beforeDevCommand": "npm run dev",
-    "devPath": "http://localhost:3000",
+    "devPath": "http://localhost:80",
     "distDir": "../.output/public"
   },
   "package": {
@@ -55,6 +55,7 @@
     },
     "windows": [
       {
+        "url": "http://localhost:80",
         "fullscreen": false,
         "height": 600,
         "resizable": true,

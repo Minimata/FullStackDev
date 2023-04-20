@@ -1,0 +1,62 @@
+version: "3.1"
+
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+
+  app1:
+    restart: always
+    build: ../
+    depends_on:
+      - db
+    environment:
+      PORT: 3000
+      DATABASE_URL: postgres://postgres:postgres@db:5432/postgres
+    ports:
+      - "3000:3000"
+
+  # app2:
+  #   restart: always
+  #   build: ../
+  #   depends_on:
+  #     - db
+  #   environment:
+  #     PORT: 3000
+  #     DATABASE_URL: postgres://postgres:postgres@localhost:5432/postgres
+  #   ports:
+  #     - "3001:3000"
+
+  # app3:
+  #   restart: always
+  #   build: ../
+  #   depends_on:
+  #     - db
+  #   environment:
+  #     PORT: 3000
+  #     DATABASE_URL: postgres://postgres:postgres@localhost:5432/postgres
+  #   ports:
+  #     - "3002:3000"
+
+  nginx:
+    image: nginx
+    restart: always
+    depends_on:
+      - app1
+    links:
+      - app1
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx:/etc/nginx
+
+volumes:
+  postgres_data:

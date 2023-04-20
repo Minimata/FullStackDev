@@ -13,6 +13,8 @@
 import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
-export default eventHandler(() => {
-  return prisma.dinosaur.findMany()
+export default eventHandler(async () => {
+  const dinosaurs = await prisma.dinosaur.findMany()
+  console.log(dinosaurs)
+  return dinosaurs
 })

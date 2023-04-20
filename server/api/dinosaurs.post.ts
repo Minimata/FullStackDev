@@ -14,7 +14,5 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 export default eventHandler(async (event) => {
-  // `prisma` is typed and will help you to interact with the database. In addition all parameters you put into your database will be validated at runtime to ensure maximum safety.
-  const body = await readBody(event)
-  return { body }
+  return await prisma.dinosaur.create({ data: await readBody(event) })
 })
